@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+then
+	python3 -m http.server 3003
+else
+	python3 -m http.server $1
+fi
