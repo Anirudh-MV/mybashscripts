@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+then
+	echo "No arguments supplied"
+else
+	kill -9 $(lsof -t -i:$1 -sTCP:LISTEN)
+fi
+
