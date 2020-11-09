@@ -1,12 +1,16 @@
 #!/bin/bash
-
+if [ -z "$SSHKEYPATH" ]
+then
+	echo "\$SSHKEYPATH doesn't exist."
+	exit
+fi
 if [[ $1 =~ "@" ]]
 then
-	ssh -o ServerAliveInterval=180 -o ServerAliveCountMax=2 -i /home/ani/private_key_openssh_without_passphrase $1
+	ssh -o ServerAliveInterval=180 -o ServerAliveCountMax=2 -i $SSHKEYPATH $1
 else
 	echo "************************************"
-	echo "Check username"
+	echo "Username not provided"
 	echo "Trying username as ubuntu by default"
 	echo "************************************"
-	ssh -o ServerAliveInterval=180 -o ServerAliveCountMax=2 -i /home/ani/private_key_openssh_without_passphrase ubuntu@$1
+	ssh -o ServerAliveInterval=180 -o ServerAliveCountMax=2 -i $SSHKEYPATH ubuntu@$1
 fi
